@@ -1,0 +1,34 @@
+@RequestMapping("/api")
+@RestController
+class OrderController extends ResponseBuilder {
+    
+    @Autowired
+    OrderService orderService;
+    
+    @PostMapping("/order/{userId}")
+    public ResponseEntity<?> create(@PathVariable("userId") int userId, @RequestBody Order order) {
+        try {
+            buildSuccess(orderService.create(order));
+        } catch (Exception e) {
+            buildError(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    
+    @GetMapping("/order/{userId")(
+    public ResponseEntity<?> getOrder(@PathVariable("userId") int userId) {
+        try {
+            buildSuccess(orderService.get(userId));
+        } catch (Exception e) {
+            buildError(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    
+    @GetMapping("/order/{orderId}")
+    public ResponseEntity<?> getAmount(@PathVariable("orderId") int orderId) {
+        try {
+            buildSuccess(orderService.getAmount(orderId));
+        } catch (Exception e) {
+            buildError(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+}
