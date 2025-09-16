@@ -1,0 +1,8 @@
+public enum ORDER_STATUS {
+    PENDING,
+    SUCCESS,
+    SHIPPED,
+    CONFIRMED,
+    CANCELLED,
+    FAILED;
+}
